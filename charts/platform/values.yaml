@@ -1,40 +1,40 @@
-# jk8s Values
+# Platform Values
 platform:
   repository:
-    url: https://github.com/jdotw/jk8s.git
+    url: https://github.com/12kmps/platform.git
     appsPath: applications
     targetRevision: HEAD
   dns: 
-    fqdn: "example.jk8s.io" # Required
-    rootFQND: "jk8s.io"     # Required
+    fqdn: 
+    rootFQND: 
     externalDNS:
       enabled: false
-      zoneID: ""
+      zoneID:
       aws: 
-        serviceAccountName: ""
+        serviceAccountName:
   tls:
     certManager:
       enabled: true
-      email: "cert@example.jk8s.io"
+      email: 
       aws: 
-        serviceAccountName: ""
+        serviceAccountName:
       selfSigned: 
         enabled: true
       letsEncrypt:
         staging:
           enabled: false
-          email: ""
+          email:
           route53:
-            zoneID: ""
+            zoneID:
         production:
           enabled: false
-          email: ""
+          email:
           route53:
-            zoneID: ""
+            zoneID:
   secrets:
     externalSecrets:
       enabled: false
-      rdsSecretName: ""
+      rdsSecretName:
       aws:
         secretsManager:
           argocdServiceAccountName:
@@ -50,12 +50,12 @@ platform:
       storage:
         es:
           enabled: false
-          url: ""
-          credentialsSecretName: ""
+          url:
+          credentialsSecretName:
         inMemory:
           enabled: true
   rds:
-    host: ""
+    host:
   crossplane:
     kubernetes:
       enabled: false
@@ -63,15 +63,15 @@ platform:
       connectionSecretName:
       externalSecretName:
   privateRepositories:
-    # - name: ""
-    #   url: ""
+    # - name:
+    #   url:
     #   externalSecret:
-    #     name: ""
+    #     name:
   apps: []
-    # - name: ""
-    #   repoURL: ""
-    #   path: ""
-    #   targetRevision: ""
+    # - name:
+    #   repoURL:
+    #   path:
+    #   targetRevision:
         
 
 
