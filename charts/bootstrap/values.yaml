@@ -2,7 +2,7 @@
 platform:
   repository:
     url: https://github.com/12kmps/platform.git
-    appsPath: applications
+    appsPath: argocd
     targetRevision: HEAD
   dns: 
     fqdn: 

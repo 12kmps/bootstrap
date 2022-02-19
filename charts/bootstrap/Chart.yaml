@@ -1,4 +1,4 @@
-name: platform
+name: bootstrap
 version: 1.4.10
 apiVersion: v2
 dependencies:
