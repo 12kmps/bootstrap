@@ -1,0 +1,97 @@
+# jk8s Values
+platform:
+  repository:
+    url: https://github.com/jdotw/jk8s.git
+    appsPath: applications
+    targetRevision: HEAD
+  dns: 
+    fqdn: "example.jk8s.io" # Required
+    rootFQND: "jk8s.io"     # Required
+    externalDNS:
+      enabled: false
+      zoneID: ""
+      aws: 
+        serviceAccountName: ""
+  tls:
+    certManager:
+      enabled: true
+      email: "cert@example.jk8s.io"
+      aws: 
+        serviceAccountName: ""
+      selfSigned: 
+        enabled: true
+      letsEncrypt:
+        staging:
+          enabled: false
+          email: ""
+          route53:
+            zoneID: ""
+        production:
+          enabled: false
+          email: ""
+          route53:
+            zoneID: ""
+  secrets:
+    externalSecrets:
+      enabled: false
+      rdsSecretName: ""
+      aws:
+        secretsManager:
+          argocdServiceAccountName:
+          telemetryServiceAccountName:
+          appServiceAccountName:
+          crossplaneServiceAccountName:
+          argocdServiceAccountRoleARN:
+          telemetryServiceAccountRoleARN:
+          appServiceAccountRoleARN:
+          crossplaneServiceAccountRoleARN:
+  telemetry:
+    jaeger:
+      storage:
+        es:
+          enabled: false
+          url: ""
+          credentialsSecretName: ""
+        inMemory:
+          enabled: true
+  rds:
+    host: ""
+  crossplane:
+    kubernetes:
+      enabled: false
+      inCluster: false
+      connectionSecretName:
+      externalSecretName:
+  privateRepositories:
+    # - name: ""
+    #   url: ""
+    #   externalSecret:
+    #     name: ""
+  apps: []
+    # - name: ""
+    #   repoURL: ""
+    #   path: ""
+    #   targetRevision: ""
+        
+
+
+# Dependency Chart Values
+argo-cd:
+  controller:
+    metrics:
+      enabled: true
+  dex:
+    metrics:
+      enabled: true
+  server:
+    metrics:
+      enabled: true
+    extraArgs:
+      - --insecure
+  redis:
+    metrics:
+      enabled: true
+  repoServer:
+    metrics:
+      enabled: true
+

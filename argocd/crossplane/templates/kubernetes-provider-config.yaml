@@ -1,0 +1,45 @@
+{{ if .Values.kubernetes.enabled }}
+{{ if .Values.kubernetes.inCluster }}
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  credentials:
+    source: InjectedIdentity
+{{ else if .Values.kubernetes.connectionSecretName }}
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: {{ .Values.kubernetes.connectionSecretName }}-secret
+  namespace: crossplane-system
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    name: secrets-store-aws-sm
+    kind: SecretStore
+  target:
+    name: {{ .Values.kubernetes.connectionSecretName }}
+    creationPolicy: Owner
+  dataFrom:
+    - key: {{ .Values.kubernetes.externalSecretName }}
+---
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: {{ .Values.kubernetes.connectionSecretName }}
+      key: kubeconfig
+{{ end }}
+{{ end }}

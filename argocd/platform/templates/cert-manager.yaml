@@ -1,0 +1,58 @@
+{{ if .Values.tls.certManager.enabled }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+  labels:
+    istio-injection: disabled
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---    
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repository.url }}
+    targetRevision: {{ .Values.repository.targetRevision }}
+    path: "{{ .Values.repository.appsPath }}/cert-manager"
+    helm:
+      parameters:
+        # cert-manager dependency
+        {{- if .Values.tls.certManager.aws.serviceAccountRoleARN }}
+        - name: cert-manager.serviceAccount.create
+          value: "true"
+        - name: "cert-manager.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+          value: "{{ .Values.tls.certManager.aws.serviceAccountRoleARN }}"
+        {{- else if .Values.tls.certManager.aws.serviceAccountName }}
+        - name: cert-manager.serviceAccount.create
+          value: "false"
+        - name: cert-manager.serviceAccount.name
+          value: "{{ .Values.tls.certManager.aws.serviceAccountName }}"
+        {{- end }}
+        # cert-manager
+        - name: letsEncrypt.staging.enabled
+          value: "{{ .Values.tls.certManager.letsEncrypt.staging.enabled }}"
+        - name: letsEncrypt.staging.email
+          value: "{{ .Values.tls.certManager.letsEncrypt.staging.email }}"
+        - name: letsEncrypt.staging.route53.zoneID
+          value: "{{ .Values.tls.certManager.letsEncrypt.staging.route53.zoneID }}"
+        - name: letsEncrypt.production.enabled
+          value: "{{ .Values.tls.certManager.letsEncrypt.production.enabled }}"
+        - name: letsEncrypt.production.email
+          value: "{{ .Values.tls.certManager.letsEncrypt.production.email }}"
+        - name: letsEncrypt.production.route53.zoneID
+          value: "{{ .Values.tls.certManager.letsEncrypt.production.route53.zoneID }}"
+  destination:
+    namespace: cert-manager
+    server: "{{ .Values.spec.destination.server }}"
+  syncPolicy:
+    automated:
+      prune: true
+{{ end }}
