@@ -5,7 +5,7 @@ platform:
     appsPath: argocd
     targetRevision: HEAD
   argocd: 
-    namespace: 
+    namespace: argocd
   dns: 
     fqdn: 
     rootFQND: 
