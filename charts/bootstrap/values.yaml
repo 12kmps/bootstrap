@@ -97,3 +97,5 @@ argo-cd:
     metrics:
       enabled: true
 
+external-secrets:
+  installCRDs: true
