@@ -2,6 +2,20 @@ apiVersion: v1
 entries:
   bootstrap:
   - apiVersion: v2
+    created: "2022-02-26T01:58:27.746480627Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: ~3.33.6
+    - name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: ~0.3.11
+    digest: 0069adb5b10cd635fbaf26ea048673359b7bad37dc0253bf4aafbae5d8c18667
+    name: bootstrap
+    urls:
+    - https://github.com/12kmps/bootstrap/releases/download/bootstrap-1.9.4/bootstrap-1.9.4.tgz
+    version: 1.9.4
+  - apiVersion: v2
     created: "2022-02-26T01:37:22.49085151Z"
     dependencies:
     - name: argo-cd
@@ -54,4 +68,4 @@ entries:
     urls:
     - https://github.com/12kmps/bootstrap/releases/download/bootstrap-1.8.0/bootstrap-1.8.0.tgz
     version: 1.8.0
-generated: "2022-02-26T01:37:22.49087571Z"
+generated: "2022-02-26T01:58:27.746512827Z"
