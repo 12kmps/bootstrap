@@ -99,3 +99,4 @@ argo-cd:
 
 external-secrets:
   installCRDs: true
+  controllerClass: bootstrap
