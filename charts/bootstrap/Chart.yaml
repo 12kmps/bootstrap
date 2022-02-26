@@ -1,5 +1,5 @@
 name: bootstrap
-version: 1.9.8
+version: 1.9.9
 apiVersion: v2
 dependencies:
   - name: argo-cd
