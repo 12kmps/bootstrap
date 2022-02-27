@@ -1,10 +1,7 @@
 name: bootstrap
-version: 1.10.1
+version: 1.11.0
 apiVersion: v2
 dependencies:
-  - name: external-secrets
-    version: ~0.4.4
-    repository: "https://external-secrets.io"
   - name: argo-cd
     version: ~3.33.6
     repository: "https://argoproj.github.io/argo-helm"
