@@ -97,3 +97,9 @@ argo-cd:
     metrics:
       enabled: true
 
+external-secrets:
+  installCRDs: true
+  controllerClass: bootstrap
+  serviceAccount:
+    create: false
+    name: external-secrets
