@@ -23,16 +23,10 @@ platform:
       selfSigned: 
         enabled: true
       letsEncrypt:
-        staging:
-          enabled: false
-          email:
-          route53:
-            zoneID:
-        production:
-          enabled: false
-          email:
-          route53:
-            zoneID:
+        mode:
+        email:
+        route53:
+          zoneID:
   secrets:
     externalSecrets:
       enabled: false
