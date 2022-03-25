@@ -14,6 +14,8 @@ platform:
       zoneID:
       aws: 
         serviceAccountName:
+  idp:
+    domain:
   tls:
     certManager:
       enabled: true
