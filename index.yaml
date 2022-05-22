@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   bootstrap:
   - apiVersion: v2
+    created: "2022-05-22T02:03:46.424413067Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: ~3.35.4
+    digest: e07a864a9f1a595aec81888d91f0c2571f1b4292a2d882e2f29d69fd4617c75e
+    name: bootstrap
+    urls:
+    - https://github.com/12kmps/bootstrap/releases/download/bootstrap-1.16.0/bootstrap-1.16.0.tgz
+    version: 1.16.0
+  - apiVersion: v2
     created: "2022-03-27T00:54:19.387033195Z"
     dependencies:
     - name: argo-cd
@@ -235,4 +246,4 @@ entries:
     urls:
     - https://github.com/12kmps/bootstrap/releases/download/bootstrap-1.8.0/bootstrap-1.8.0.tgz
     version: 1.8.0
-generated: "2022-03-27T00:54:19.3871608Z"
+generated: "2022-05-22T02:03:46.424621569Z"
