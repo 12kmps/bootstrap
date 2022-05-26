@@ -60,6 +60,13 @@ platform:
       inCluster: false
       connectionSecretName:
       externalSecretName:
+  workflows:
+    enabled: false
+    argoEvents:
+      externalSecretsServiceAccountRoleARN:
+    argoWorkflows:
+      externalSecretsServiceAccountRoleARN:
+
   privateRepositories:
     # - name:
     #   url:
